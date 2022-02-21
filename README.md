@@ -1,6 +1,6 @@
-# learn-Docker
+## learn-Docker
 
-#how to install docker
+# how to install docker
 
 **1.Set up the repository**
 **2.Install the yum-utils package (which provides the yum-config-manager utility) and set up the stable repository.**
