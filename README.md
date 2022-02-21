@@ -59,10 +59,10 @@ Publish webserver in port 80
 `docker run --publish 80:80 nginx`
 -d. --detached - to run in detached mode
 
-To inspect an image and container
-`docker image inspect c316d5a335a5`
+To inspect an image and container  
+`docker image inspect c316d5a335a5`  
 `docker container inspect 9abcc2cfa222`
-replace container id and image id with your ids
+replace container id and image id with your ids  
 
 remove:
   - all stopped containers
