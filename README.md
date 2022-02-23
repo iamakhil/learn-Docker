@@ -166,3 +166,65 @@ Mounting a Data Volume
 
 `docker run -dit --name example1 -p 80:80 --mount source=akhil,destination=/data centos`
 
+To list dangling images   
+`docker images -f dangling=true`  
+`docker image prune -a --filter "until=24h"`  
+
+To remove dangling images  
+`docker image prune`  
+
+To remove dangling(stopped) containers  
+
+`docker container prune`  
+
+To clean up network  
+
+`docker network prune`  
+
+To prune volumes  
+
+`docker system prune --volumes`  
+
+Restart policies  
+
+`docker run -d --name=redisdocker --restart unless-stopped redis`  
+
+no:	Do not automatically restart the container when it exits. This is the default.  
+
+on-failure[:max-retries]	Restart only if the container exits with a non-zero exit status. Optionally, limit the number of restart retries the Docker daemon attempts.  
+
+unless-stopped:	Restart the container unless it is explicitly stopped or Docker itself is stopped or restarted.  
+
+always:	Always restart the container regardless of the exit status. When you specify always, the Docker daemon will try to restart the container indefinitely. The container will also always start on daemon startup, regardless of the current state of the container.  
+
+# Components of Dockerfile  
+  
+vim dockerfile  
+---  
+  
+FROM docker.io/centos  
+MAINTAINER Akhil  
+RUN yum update -y && yum -y install httpd  
+RUN mkdir -p /data/myfirstscript  
+WORKDIR /data/myfirstscript  
+CMD python test.py  
+  
+---
+
+To build   
+`docker build .`  
+
+To tag an image while building   
+Before build  
+`docker build -t akhildsouza/firstimage:latest .`
+After build  
+``docker tag <image ID> akhildsouza/firstimage:latest`  
+
+
+1. Used FROM instruction to specify the image.  
+2. Used MAINTAINER instruction to specify information about the author.  
+3. Used RUN instruction to update all packages and install the httpd package.  
+4. Again used RUN instruction to create a homepage "index.html" under the apache default directory /var/www/html.  
+5. Used EXPOSE instruction to open the listening port 80 of httpd service.  
+6. Used CMD instruction to run a apache service command as an executable when container is launched.  
+
